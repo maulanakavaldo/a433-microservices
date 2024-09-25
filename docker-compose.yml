@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  # Service untuk item-app
+  item-app:
+    image: ghcr.io/maulanakavaldo/item-app:v1
+    ports:
+      - "80:8080"	# Port mapping agar dapat diakses dari port 80 di host
+    depends_on:
+      - item-db  	# item-app hanya berjalan setelah item-db diluncurkan
+    restart: always  	# restart policy agar container selalu restart ketika terhenti
+
+  # Service untuk item-db
+  item-db:
+    image: mongo:3	# Menggunakan image mongo:3 dari Docker Hub.
+    volumes:
+      - app-db:/data/db	# Memakai volume bernama app-db dengan target /data/db di container
+
+volumes:
+  app-db:	# Definisi volume app-db
