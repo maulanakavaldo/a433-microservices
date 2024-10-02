@@ -24,6 +24,5 @@ jobs:
 
       - name: Build and Push Docker Image  # Build and push a Docker image
         run: |
-          # export GH_PACKAGES_TOKEN=${{ secrets.GH_PACKAGES_TOKEN }}
-	  export PAT=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
+          export PACKAGE_TOKEN=${{ secrets.PACKAGE_TOKEN }}
           bash build_push_image_karsajobs.sh
